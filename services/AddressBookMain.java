@@ -36,6 +36,7 @@ public class AddressBookMain {
                     break;
                 case 'D':
                     //delete
+                    deletePerson();
                     break;
                 case 'S':
                     //Show
@@ -53,8 +54,8 @@ public class AddressBookMain {
 
     }
 
-     //Method for taking person details and store them into storage.
-     //In this program used hashmap.
+    //Method for taking person details and store them into storage.
+    //In this program used hashmap.
 
     private static void addPersonDetail() {
         Person person = new Person();
@@ -77,6 +78,8 @@ public class AddressBookMain {
                     personMap.put(person.getFirstName(), person);
                 }
             }
+        } else {
+            System.out.println("Record not found");
         }
         System.out.println("\n\t\t" + personMap.toString());
     }
@@ -98,5 +101,20 @@ public class AddressBookMain {
         System.out.print("Enter Phone Number : ");
         person.setPhone(scanner.nextLine());
         return person;
+    }
+
+    //Method for deleting the person from existing address book
+    public static void deletePerson() {
+        System.out.print("\nEnter the first name of the person to delete : ");
+        String firstName = scanner.nextLine();
+        Person newPerson = personMap.get(firstName);
+        System.out.println(newPerson.toString());
+        if (newPerson != null) {
+            personMap.remove(firstName);
+            System.out.println("Deleted Successfully");
+        } else {
+            System.out.println("Record not exist");
+        }
+
     }
 }
